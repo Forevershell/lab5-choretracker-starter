@@ -10,10 +10,14 @@ class ChildTest < ActiveSupport::TestCase
 	context "Creating a child context" do
 		setup do
 			create_children
+			create_tasks
+			create_chores
 		end
 
 		teardown do
 			destroy_children
+			destroy_tasks
+			destroy_chores
 		end
 
 		should "have name methods that list first_ and last_names combined" do
@@ -23,7 +27,8 @@ class ChildTest < ActiveSupport::TestCase
 		end
 
 		should "have point functions that adds up total points in assigned chores" do
-			assert_equal 0, @alex.points_earned
+			assert_equal 4, @alex.points_earned
+			assert_equal 1, @mark.points_earned
 		end
 
 		should "have a scope to alphabetize children" do
